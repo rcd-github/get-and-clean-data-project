@@ -1,0 +1,47 @@
+---
+title: "Code Book"
+output: html_document
+---
+### Source of the Data 
+
+The source of the data is the ***Human Activity Recognition Using Smartphones Dataset***, available at https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+
+### Data Characteristics
+
+* **Data file name:** *tidy.txt*
+
+* __Data dimensions:__  11880 observations of 5 variables  
+
+### Variables
+
+**subject_id**
+
+* Variable class: integer
+* Possible values: 30 integers (1 to 30)
+* Details: the values correspond to 30 persons undertaking the study within an age bracket of 19-48 years
+
+**activity**
+
+* Variable class: factor
+* Possible values: six possible values: LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, and WALKING_UPSTAIRS. 
+* Details: the values correspond to six activities carried out by each of the subjects 
+wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope
+
+**feature**
+
+* Variable class: factor
+* Possible values: 33 possible values: tBodyAcc-X, tBodyAcc-Y, tBodyAcc-Z, tGravityAcc-X, tGravityAcc-Y, tGravityAcc-Z, tBodyAccJerk-X, tBodyAccJerk-Y, tBodyAccJerk-Z, tBodyGyro-X, tBodyGyro-Y, tBodyGyro-Z, tBodyGyroJerk-X, tBodyGyroJerk-Y, tBodyGyroJerk-Z, tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag, fBodyAcc-X, fBodyAcc-Y, fBodyAcc-Z, fBodyAccJerk-X, fBodyAccJerk-Y, fBodyAccJerk-Z, fBodyGyro-X, fBodyGyro-Y, fBodyGyro-Z, fBodyAccMag, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag
+* Details: Using the smartphone's embedded accelerometer and gyroscope data was obtained and processed (see details in the files "README.txt" and "features_info.txt" available at https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). '-X -Y and -Z' is used to denote 3-axial signals in the X, Y and Z directions.
+
+**measurement**
+
+* Variable class: factor
+* Possible values: 2 possible values: "mean" and "std"
+* Details: The set of variables that were estimated from the signals in the _features_ variable: "mean"" stands for Mean value and "std" stands for Standard deviation
+
+**average_value**
+
+* Variable class: numeric
+* Possible values: min -0.99770; max 0.97450
+* Details: corresponds to the mean of the values registered during the experiment for each subject, activity, feature and measurement 
+
