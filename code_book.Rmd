@@ -1,16 +1,19 @@
----
-title: "Code Book"
-output: html_document
----
+# Code Book
+
+## Processed DataHuman Activity Recognition Using Smartphones 
+
 ### Source of the Data 
 
-The source of the data is the ***Human Activity Recognition Using Smartphones Dataset***, available at https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+The source of the data is the ***Human Activity Recognition Using Smartphones Dataset***, available at https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, which has 10299 rows and 561 columns
+
+This data was used to elaborate the following paper:
+Anguita, D., Ghio, A. Oneto, L. Parra, X and Reyes-Ortiz, J.L. (2012),  "Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine", International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012 
 
 ### Data Characteristics
 
 * **Data file name:** *tidy.txt*
 
-* __Data dimensions:__  11880 observations of 5 variables  
+* __Data dimensions:__  11880 observations of 8 variables  
 
 ### Variables
 
@@ -23,25 +26,60 @@ The source of the data is the ***Human Activity Recognition Using Smartphones Da
 **activity**
 
 * Variable class: factor
-* Possible values: six possible values: LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, and WALKING_UPSTAIRS. 
+* Possible values: six possible levels: _LAYING_, _SITTING_, _STANDING_, _WALKING_, _WALKING_DOWNSTAIRS_, and _WALKING_UPSTAIRS_. 
 * Details: the values correspond to six activities carried out by each of the subjects 
-wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope
+wearing a smartphone (Samsung Galaxy S II) on the waist. 
 
-**feature**
-
-* Variable class: factor
-* Possible values: 33 possible values: tBodyAcc-X, tBodyAcc-Y, tBodyAcc-Z, tGravityAcc-X, tGravityAcc-Y, tGravityAcc-Z, tBodyAccJerk-X, tBodyAccJerk-Y, tBodyAccJerk-Z, tBodyGyro-X, tBodyGyro-Y, tBodyGyro-Z, tBodyGyroJerk-X, tBodyGyroJerk-Y, tBodyGyroJerk-Z, tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag, fBodyAcc-X, fBodyAcc-Y, fBodyAcc-Z, fBodyAccJerk-X, fBodyAccJerk-Y, fBodyAccJerk-Z, fBodyGyro-X, fBodyGyro-Y, fBodyGyro-Z, fBodyAccMag, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag
-* Details: Using the smartphone's embedded accelerometer and gyroscope data was obtained and processed (see details in the files "README.txt" and "features_info.txt" available at https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). '-X -Y and -Z' is used to denote 3-axial signals in the X, Y and Z directions.
-
-**measurement**
+**sensor_signal**
 
 * Variable class: factor
-* Possible values: 2 possible values: "mean" and "std"
-* Details: The set of variables that were estimated from the signals in the _features_ variable: "mean"" stands for Mean value and "std" stands for Standard deviation
+* Possible values: 3 possible levels: _BodyAcc_, _GravityAcc_ and _Gyro_.
+* Details: Each record has information on one of three possible readings obtained with the phone sensors:
+    - _BodyAcc_ refers to *body motion acceleration*
+    - _GravityAcc_ refers to *gravity acceleration*
+    - _Gyro_ refers to *gyroscope* readings.
+
+The sensor signals (accelerometer and gyroscope of a Samsumg SII smartphone) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor *acceleration* signal (i.e. from the accelerometer), which has gravitational and body motion components**^1^**, was separated using a Butterworth low-pass filter into *body acceleration* (_BodyAcc_) and *gravity* (_GravityAcc_. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used.
+
+**axis_or_norm**
+
+* Variable class: factor
+* Possible values: 4 possible levels: _X_, _Y_, _Z_ and _Euclid_. 
+* Details: Each observation of the sensors in __sensor_signal__ has either an X-axis (_X_), Y-axis (_Y_) or Z-axis (_Z_) [associated with it] [1] or an [Euclidean Norm] [2] (_Euclid_), the latter because the magnitude of these three-dimensional signals was calculated using the Euclidean norm. 
+
+**jerk**
+
+* Variable class: factor
+* Possible values: 2 possible levels: _Jerk_ and _NoJerk_. 
+* Details: This especifies whether jerk signals (_Jerk_) were obtained or not (_NoJerk_). Jerk (i.e. changes of accelerations) signals are often used in the _Human Activity Recognition Literature_ because, unlike the original signals, they are orientation-independent. See more in the paper [here] [3].
+
+**signal_domain**
+
+* Variable class: factor
+* Possible values: 2 possible levels:  _freq_ and _time_. 
+* Details: _freq_ refers to refers to __frequency domain signals__, because a [Fast Fourier Transform] [4] was applied to the signals. __Time domain__ signals do not have a FFT. More about the use of time domain and frequency domain signals in the _Human Activity Recognition_ literature can be found in this paper [here][5]. 
+
+**statistic**
+
+* Variable class: factor
+* Possible values: 2 possible levels:  _mean_ and _std_. 
+* Details: from the signals, the mean (_mean_) and standard deviation (_std_) were calculated.
 
 **average_value**
 
 * Variable class: numeric
-* Possible values: min -0.99770; max 0.97450
-* Details: corresponds to the mean of the values registered during the experiment for each subject, activity, feature and measurement 
+* Possible values: minimum value -0.99770 and maximum value 0.97450. 
+* Details: the values indicate the group means, when grouping the original observations in the raw data by the following variables: subject_id, activity, sensor_signal, axis_or_norm, jerk, signal_domain and statistic. 
+
+#### Notes
+
+1. See http://www.starlino.com/imu_guide.html for more information about operation of  Inertial Micro-Electro-Mechanical Systems sensors like accelerometers and gyroscopes.
+
+
+
+[1]: http://www.starlino.com/imu_guide.html  
+[2]: https://en.wikipedia.org/wiki/Euclidean_distance
+[3]: http://www.cs.uef.fi/~whamalai/articles/cows.pdf
+[4]: https://en.wikipedia.org/wiki/Fast_Fourier_transform 
+[5]: http://repositorio-aberto.up.pt/bitstream/10216/72620/1/000157899.pdf
 
