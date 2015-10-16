@@ -48,5 +48,4 @@ Then I used the select() and arrange() dplyr package functions to select the var
 
 I used the *group_by()* function to group the *tidy_data* data frame for each of the seven variables: subject_id, activity, sensor_signal, axis_or_norm, jerk, signal_domain, and statistic. Then I used the *summarise()* function to calculate the means by group.
 
-**Final Outcome: the *tidy data* frame calculates the mean (average_value) for each person, for each activity, and for each of the five other variables: sensor_signal,
-# axis_or_norm,jerk, signal_domain and statistic**
+**Final Outcome: the _tidy data_ frame calculates the mean (average_value) for each person, for each activity, and for each of the five other variables: sensor_signal, axis_or_norm, jerk, signal_domain and statistic** 
